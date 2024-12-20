@@ -1,0 +1,14 @@
+DESCRIPTION >
+    Data source for Wikipedia page views
+
+SCHEMA >
+    `wiki_code` String `json:$.wiki_code`,
+    `article_title` String `json:$.article_title`,
+    `page_id` String `json:$.page_id`,
+    `daily_total` UInt64 `json:$.daily_total`,
+    `source` String `json:$.source`,
+    `date` Date `json:$.date`
+
+ENGINE "MergeTree"
+ENGINE_PARTITION_KEY "toYYYYMM(date)"
+ENGINE_SORTING_KEY "date, wiki_code, page_id"

@@ -1,0 +1,6 @@
+
+- name: test_no_params
+  description: Test the pipe with no parameters as it doesn't require any.
+  parameters: tb run pipe_name
+  expected_result: |
+    {"last_12_months_views":4281991,"previous_12_months_views":0,"year_over_year_change":null}

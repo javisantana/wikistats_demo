@@ -1,0 +1,13 @@
+DESCRIPTION >
+    Calculate monthly page views trend for the last 12 months
+
+NODE monthly_trend_node_1
+SQL >
+    %
+    SELECT
+        toStartOfMonth(date) AS month,
+        sum(daily_total) AS monthly_views
+    FROM wikipedia_page_views
+    WHERE date >= toStartOfMonth(now() - interval 12 month)
+    GROUP BY month
+    ORDER BY month

@@ -1,0 +1,7 @@
+
+- name: test_no_parameters
+  description: Test the pipe without any parameters to calculate the total page views
+    for the current and previous month.
+  parameters: tb run <pipe_name>
+  expected_result: |
+    {"current_month_views":542303,"previous_month_views":282223,"month_over_month_change":92.15407674073339}

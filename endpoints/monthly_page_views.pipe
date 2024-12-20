@@ -1,0 +1,20 @@
+DESCRIPTION >
+    Calculate total page views for the current month and compare with the previous month
+
+NODE monthly_page_views_node_1
+SQL >
+    %
+    WITH toStartOfMonth(now()) AS current_month_start,
+         toStartOfMonth(now() - interval 1 month) AS previous_month_start
+    SELECT
+        sumIf(daily_total, date >= current_month_start) AS current_month_views,
+        sumIf(daily_total, date >= previous_month_start AND date < current_month_start) AS previous_month_views
+    FROM wikipedia_page_views
+
+NODE monthly_page_views_node_2
+SQL >
+    SELECT
+        current_month_views,
+        previous_month_views,
+        (current_month_views - previous_month_views) / previous_month_views * 100 AS month_over_month_change
+    FROM monthly_page_views_node_1

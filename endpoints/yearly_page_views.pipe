@@ -1,0 +1,21 @@
+DESCRIPTION >
+    Calculate total page views for the last 12 months and compare with the previous 12 months
+
+NODE yearly_page_views_node_1
+SQL >
+    %
+    WITH toStartOfMonth(now()) AS current_month_start,
+         toStartOfMonth(now() - interval 12 month) AS last_year_start,
+         toStartOfMonth(now() - interval 24 month) AS previous_year_start
+    SELECT
+        sumIf(daily_total, date >= last_year_start AND date < current_month_start) AS last_12_months_views,
+        sumIf(daily_total, date >= previous_year_start AND date < last_year_start) AS previous_12_months_views
+    FROM wikipedia_page_views
+
+NODE yearly_page_views_node_2
+SQL >
+    SELECT
+        last_12_months_views,
+        previous_12_months_views,
+        (last_12_months_views - previous_12_months_views) / previous_12_months_views * 100 AS year_over_year_change
+    FROM yearly_page_views_node_1

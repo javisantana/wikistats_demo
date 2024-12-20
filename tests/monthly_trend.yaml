@@ -1,0 +1,18 @@
+
+- name: test_monthly_page_views_trend
+  description: Test the monthly page views trend for the last 12 months without any
+    parameters.
+  parameters: tb run pipe monthly_trend_node_1
+  expected_result: |
+    {"month":"2024-01-01","monthly_views":563029}
+    {"month":"2024-02-01","monthly_views":339016}
+    {"month":"2024-03-01","monthly_views":478393}
+    {"month":"2024-04-01","monthly_views":317995}
+    {"month":"2024-05-01","monthly_views":321188}
+    {"month":"2024-06-01","monthly_views":343165}
+    {"month":"2024-07-01","monthly_views":484175}
+    {"month":"2024-08-01","monthly_views":300484}
+    {"month":"2024-09-01","monthly_views":354596}
+    {"month":"2024-10-01","monthly_views":497727}
+    {"month":"2024-11-01","monthly_views":282223}
+    {"month":"2024-12-01","monthly_views":542303}
